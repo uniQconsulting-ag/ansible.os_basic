@@ -1,4 +1,4 @@
-[![uniQconsulting](https://www.uniqconsulting.ch/fileadmin/images/logo-main.png =250x)](https://www.uniqconsulting.ch/)
+[![uniQconsulting](https://www.uniqconsulting.ch/fileadmin/images/logo-main.png=250x)](https://www.uniqconsulting.ch/)
 
 # ansible.rolename
 
