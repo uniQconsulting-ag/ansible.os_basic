@@ -1,6 +1,6 @@
 <a href=""><img src="https://www.uniqconsulting.ch/fileadmin/images/logo-main.png" alt="uniQconsulting" width="250px"/></a>
 
-# ansible.rolename
+# ansible.os_basic
 
 This Ansible Role configure and update a Linux server. The following tasks will be configured:
 * `Basic Package installation`
