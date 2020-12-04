@@ -1,0 +1,73 @@
+---
+# In this file only includes will be made
+# See examples below
+
+# Never delete this
+- name: include global vars file if present
+  import_tasks: include-vars.yml
+
+- name: include the system-check
+  include_tasks: '{{ include_file_path }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_version }}/{{ item }}'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ item }}'
+        - '{{ ansible_distribution }}/{{ item }}'
+        - '{{ ansible_os_family }}/{{ item }}'
+        - 'shared/{{ item }}'
+        - '{{ item }}'
+      errors: 'ignore'
+  loop_control:
+    loop_var: include_file_path
+  when: run_systemcheck
+  with_items:
+  - pre_systemcheck.yml
+
+- name: include pre-dependencies
+  include_tasks: '{{ include_file_path }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_version }}/{{ item }}'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ item }}'
+        - '{{ ansible_distribution }}/{{ item }}'
+        - '{{ ansible_os_family }}/{{ item }}'
+        - 'shared/{{ item }}'
+        - '{{ item }}'
+      errors: 'ignore'
+  loop_control:
+    loop_var: include_file_path
+  with_items:
+  - pre_dependencies.yml
+
+- name: include {{ include_file_path }}
+  include_tasks: '{{ include_file_path }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_version }}/{{ item }}'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ item }}'
+        - '{{ ansible_distribution }}/{{ item }}'
+        - '{{ ansible_os_family }}/{{ item }}'
+        - 'shared/{{ item }}'
+        - '{{ item }}'
+      errors: 'ignore'
+  loop_control:
+    loop_var: include_file_path
+  with_items: "{{ role_include_files }}"
+
+- name: include post-dependencies
+  include_tasks: '{{ include_file_path }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_version }}/{{ item }}'
+        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ item }}'
+        - '{{ ansible_distribution }}/{{ item }}'
+        - '{{ ansible_os_family }}/{{ item }}'
+        - 'shared/{{ item }}'
+        - '{{ item }}'
+      errors: 'ignore'
+  loop_control:
+    loop_var: include_file_path
+  with_items:
+  - post_dependencies.yml
+
+...
