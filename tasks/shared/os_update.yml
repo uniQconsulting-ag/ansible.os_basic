@@ -1,0 +1,19 @@
+---
+- block:
+  - name: install security patches with yum
+    yum:
+      name: '*'
+      state: latest
+      security: yes
+  - name: install all kernel updates with yum
+    yum:
+      name: 'kernel*'
+      state: latest
+  when: osbasic_os_update and osbasic_package_upgrade == 'security'
+
+- block:
+  - name: install all updates with yum
+    yum:
+      name: '*'
+      state: latest
+  when: osbasic_os_update and osbasic_package_upgrade == 'all'

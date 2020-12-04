@@ -1,29 +1,48 @@
-# Template Guide
+[![Alt text](https://www.uniqconsulting.ch/images/logo.png)](https://www.uniqconsulting.ch/)
 
-There are some differences, if this is a wrapper-role for an appliance, or if it is a standalone role.
+# ansible.rolename
 
-## Appliance
+This Ansible Role configure and update a Linux server. The following tasks will be configured:
+* `Basic Package installation`
+* `OS Update (Full Update / Security Update)`
+* `EPEL-Repository`
+* `SELinux`
+* `Rsyslog`
+* `SNMP`
 
-* Add your variables to `defaults` and `vars`, but keep the variables already in there. (You can change the value if needed.)
-* Add your `files` & `templates` to the folders
-* Update your `handlers`, you can delete the ones in there. Those are just examples
-* Update the `meta` file. The minimum required are `role_name` and `description`
-* Create your tasks files in a subfolder of `tasks`. Don't use the root-folder.
-* Add your tasks files to the variable `role_include_files` in `vars/main.yml`
-* Update the `shared/pre_dependencies.yml`, but keep the 3 default includes in there.
-* Update the `shared/post_dependencies.yml`, you can delete the ones in there. There just as an example.
-* Update the variables in `setup.sh` and `setup_1.sh`. Graylog was used as an example, to make it more clear.
-* Replace this file with `README_TEMPLATE.md` and edit it as needed
-* Remove `files/README.md` and `templates/README.md`
+Installation with ansible-galaxy:
 
-## Standalone
+``` bash
+ansible-galaxy install uniqconsulting.os_basic
+```
 
-* Add your variables to `defaults` and `vars`. You can delete the ones in there.
-* Add your `files` & `templates` to the folders
-* Update your `handlers`, you can delete the ones in there. Those are just examples.
-* Update the `meta` file. The minimum required are `role_name` and `description`
-* Create your tasks files in a subfolder of `tasks`. Don't use the root-folder.
-* Add your tasks files to the variable `role_include_files` in `vars/main.yml`
-* Delete the files in `tasks/shared`, and update the `tasks/main.yml` to not include these anymore
-* Replace this file with `README_TEMPLATE.md` and edit it as needed
-* Remove `files/README.md` and `templates/README.md`
+## Requirements
+
+* Currently only tested with CentOS 8
+* Ansible 2.9 or higher is required for this Ansible Role
+
+## Dependencies
+
+This Ansilbe Role has no dependencies to other Ansilbe Roles
+
+# uniQconsulting ag
+
+uniQconsulting ag is an IT consulting company with headquarters in Bassersdorf, Switzerland and a wholly owned subsidiary of Netcloud AG since 2017.
+Netcloud is a privately held company, reputed for Network and Cloud Services in Switzerland. Although operating independently, both companies have a long history of close collaboration.
+
+uniQconsulting provides a wide range of IT services from the datacenter to the edge and the cloud. The services and solutions of uniQconsulting are well established among clients in business areas like financial services, health care, the public sector and medium sized enterprises.
+
+Depending on individual client requirements, uniQconsulting can assume responsibility for selected, or for all phases of a project. Highly certified and experienced staff guarantee successful implementations. Projects are monitored from start to finish. 
+
+Once a project has been successfully completed, comprehensive services are available to the customer. Our trilingual Expert Helpdesk, based in Switzerland, can take on specific tasks, offloading the client staff, or proactively monitor the IT infrastructure, responding appropriately in the event of an incident or pending change. This gives customers the certainty of being able to call on the appropriate specialist if necessary, without having to build up this know-how internally.
+
+By outsourcing services related to the IT infrastructure, customers can focus on business-applications and processes, resulting in greater transparency and financial predictability in IT operations. The experts at uniQconsulting help customers to create a long-term IT strategy, supporting their overall business goals.
+
+Compliance and security topics are becoming increasingly complex and expensive. Not shying away from thinking outside the box, uniQconsulting focusses on designing high quality and game-changing IT Solutions, with the specific goal of optimizing efficiency and security in digital workflows while maximizing ROI.
+
+We believe in IT-driven success.
+
+License
+-------
+https://opensource.org/licenses/LGPL-3.0    
+Copyright (c) uniQconsulting ag - Mike Gubser <mgubser@uniqconsulting.ch>

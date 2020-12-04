@@ -1,23 +1,62 @@
 ---
-# Here belong all variables, that can be changed by a vars-file,
-# a playbook or a include.
-
-# Systemcheck
-systemcheck_physical_memory: 2048 # In MB
-systemcheck_swap_memory: 1024 # In MB
-systemcheck_disk: "{{ 20 * 1073741824‬ }}" # in bytes ; 20G
-systemcheck_cpus: 2
 
 # Role
-role_include_files: [] # add for example requirements.yml
+role_include_files: # add for example requirements.yml
+- packages.yml
+- epel.yml
+- software_cleanup.yml
+- oom_handler.yml
+- mail.yml
+- rsyslog.yml
+- snmpd.yml
+- selinux.yml
 
-# Firewall
-role_ports:
-- port: 22
-  protocol: tcp
-- port: 80
-  protocol: tcp
-- port: 443
-  protocol: tcp
+# Packages
+osbasic_base_packages:
+- "strace"
+- "ltrace"
+- "dstat"
+- "bind-utils"
+- "tar"
+- "zip"
+- "unzip"
+- "gzip"
+- "xz"
+- "sysstat"
+- "sos"
+- "wget"
+- "mailx"
+- "lsof"
+- "rsync"
+- "vim-enhanced"
+
+osbasic_base_packages_centos7:
+- "screen"
+- "yum-utils"
+- "NetworkManager-glib"
+- "nm-connection-editor"
+- "python-netaddr"
+
+osbasic_base_packages_centos8:
+- "tmux"
+- "dnf-utils"
+- "nm-connection-editor"
+- "python3-netaddr"
+
+osbasic_epel_package:
+- epel-release
+
+osbasic_mail_packages:
+- postfix
+- mailx
+
+osbasic_syslog_packages:
+- rsyslog
+
+osbasic_snmpd_packages:
+- net-snmp
+
+osbasic_selinux_packages:
+- setroubleshoot-server
 
 ...

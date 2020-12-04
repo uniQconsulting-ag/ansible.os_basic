@@ -1,16 +1,25 @@
 ---
-# Here belong all actions like service-restart,
-# config-file loads, etc. that will be started
-# if a change on a task was made
+- name: newcanonical
+  shell: postmap /etc/postfix/canonical
+  notify: restart postfix
 
-- name: restart nginx
+- name: newaliases
+  shell: newaliases
+  notify: restart postfix
+
+- name: restart postfix
   service:
-    name: nginx
+    name: postfix
     state: restarted
 
-- name: restart iptables
+- name: restart rsyslog
   service:
-    name: iptables
+    name: rsyslog
     state: restarted
 
-...
+- name: restart snmpd
+  service:
+    name: snmpd
+    state: restarted
+
+---

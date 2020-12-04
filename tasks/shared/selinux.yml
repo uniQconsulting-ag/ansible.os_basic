@@ -1,0 +1,15 @@
+---
+
+- block:
+  - name: install packages for maintaining selinux
+    yum:
+      name: "{{ osbasic_selinux_packages }}"
+      state: present
+
+  - name: configure selinux policy to {{ osbasic_selinux_policy }}
+    selinux:
+      policy: targeted
+      state: '{{ osbasic_selinux_policy }}'
+
+  when: osbasic_selinux
+...

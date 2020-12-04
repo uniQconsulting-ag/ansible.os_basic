@@ -1,0 +1,28 @@
+---
+- block:
+  - name: install packages for syslog
+    yum:
+      name: "{{ osbasic_syslog_packages }}"
+      state: present
+    notify: restart rsyslog
+
+  - name: enable rsyslog
+    service:
+      name: rsyslog
+      enabled: yes
+
+  - name: check syslog forwarding
+    shell: fgrep -lr '{{ osbasic_syslog_remote_host }}' /etc/rsyslog.*
+    failed_when: false
+    no_log: true
+    register: rsyslog_forwarding
+
+  - name: set rsyslog forwarding
+    template:
+      src: rsyslog_forwarder.conf.j2
+      dest: /etc/rsyslog.d/99-rsyslog_forwarder.conf
+    notify: restart rsyslog
+    when: rsyslog_forwarding.rc != 0
+
+  when: osbasic_syslog
+...

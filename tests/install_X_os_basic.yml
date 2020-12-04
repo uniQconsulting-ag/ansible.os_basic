@@ -1,7 +1,7 @@
 #!/usr/bin/ansible-playbook 
 ---
-- name: ROLENAME Setup
+- name: OS Basic Setup
   hosts: localhost
   roles:
-    - uniqconsulting.ROLENAME
+    - uniqconsulting.os_basic
 ...

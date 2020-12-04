@@ -1,0 +1,45 @@
+---
+
+- block:
+  - name: enable crond
+    service:
+      name: crond
+      enabled: yes
+
+
+  - name: create script oom-scanner.sh
+    copy:
+      src: files/oom-scanner.sh
+      dest: /usr/local/sbin/oom-scanner.sh
+      owner: root
+      group: root
+      mode: u+rwx,g-rwx,o-rwx
+
+  - name: sysctl settings reboot after oom
+    sysctl:
+      name: vm.panic_on_oom
+      sysctl_file: /etc/sysctl.d/99-oom_reboot.conf
+      value: 1
+      sysctl_set: yes
+      state: present
+      reload: yes
+
+  - name: sysctl settings delay reboot by 10s
+    sysctl:
+      name: kernel.panic
+      sysctl_file: /etc/sysctl.d/99-oom_reboot.conf
+      value: 10
+      sysctl_set: yes
+      state: present
+      reload: yes
+      
+  - name: create cronjob for detecting crashes after reboot
+    cron:
+      name: oom-scanner
+      special_time: reboot
+      user: root
+      job: /usr/local/sbin/oom-scanner.sh
+      cron_file: oom-scanner
+
+  when: osbasic_oom_handler
+...

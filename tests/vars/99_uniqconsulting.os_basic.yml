@@ -1,5 +1,9 @@
 ---
 
+#################
+#   OS Basic
+#################
+
 # epel repo installation
 osbasic_epel: false
 
@@ -34,3 +38,4 @@ osbasic_selinux: true
 osbasic_selinux_policy: enforcing
 
 ...
+

@@ -1,0 +1,7 @@
+---
+- name: remove old kernel packages for RPM based systems
+  shell:  package-cleanup -y --oldkernels --count='{{ osbasic_kernels_to_keep }}'
+  args:
+    warn: false
+  when: osbasic_package_cleanup
+...

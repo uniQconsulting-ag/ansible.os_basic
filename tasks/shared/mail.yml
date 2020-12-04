@@ -1,0 +1,34 @@
+---
+
+- block:
+  - name: install packages for mail setup
+    yum:
+      name: "{{ osbasic_mail_packages }}"
+      state: present
+    notify: restart postfix
+
+  - name: enable postfix
+    service:
+      name: postfix
+      enabled: yes
+
+  - name: create main.cf
+    template:
+      src: main.cf.j2
+      dest: /etc/postfix/main.cf
+    notify: restart postfix
+
+  - name: create canonical map
+    template:
+      src: canonical.j2
+      dest: /etc/postfix/canonical
+    notify: newcanonical
+
+  - name: create aliases
+    template:
+      src: aliases.j2
+      dest: /etc/aliases
+    notify: newaliases
+
+  when: osbasic_mail
+...

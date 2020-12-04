@@ -1,0 +1,6 @@
+---
+- name: install base packages
+  yum:
+    name: "{{ osbasic_base_packages + osbasic_base_packages_centos7 }}"
+    state: present
+...

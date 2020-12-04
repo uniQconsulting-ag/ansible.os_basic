@@ -1,0 +1,6 @@
+# created by ansible
+syscontact      {{ osbasic_sysadmin_email }}
+rouser          safereader auth
+rwuser          safewriter priv
+
+rocommunity     {{ osbasic_snmp_community_name }}   {{ osbasic_snmp_sourceip }}

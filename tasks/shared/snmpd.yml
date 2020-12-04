@@ -1,0 +1,20 @@
+---
+- block:
+  - name: install packages for mail setup
+    yum:
+      name: "{{ osbasic_snmpd_packages }}"
+      state: present
+
+  - name: enable snmpd
+    service:
+      name: snmpd
+      enabled: yes
+      
+  - name: create snmpd.conf
+    template:
+      src: snmpd.conf.j2
+      dest: /etc/snmp/snmpd.conf
+    notify: restart snmpd
+    
+  when: osbasic_snmpd
+...

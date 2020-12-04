@@ -1,0 +1,7 @@
+---
+- name: install epel repo packages
+  yum:
+    name: "{{ osbasic_epel_package }}"
+    state: present
+  when: osbasic_epel
+...
