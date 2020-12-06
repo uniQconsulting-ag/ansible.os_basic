@@ -13,7 +13,8 @@
 
   - name: check syslog forwarding
     shell: fgrep -lr '{{ osbasic_syslog_remote_host }}' /etc/rsyslog.*
-    failed_when: false
+    failed_when: no
+    changed_when: no
     no_log: true
     register: rsyslog_forwarding
 

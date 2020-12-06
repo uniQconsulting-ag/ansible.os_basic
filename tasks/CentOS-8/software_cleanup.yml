@@ -4,4 +4,6 @@
   args:
     warn: false
   when: osbasic_package_cleanup
+  changed_when: no
+  
 ...
