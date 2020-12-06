@@ -6,19 +6,10 @@
 - name: include global vars file if present
   import_tasks: include-vars.yml
 
-- name: include {{ include_file_path }}
-  include_tasks: '{{ include_file_path }}'
-  with_first_found:
-    - files:
-        - '{{ ansible_distribution }}-{{ ansible_distribution_version }}/{{ item }}'
-        - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}/{{ item }}'
-        - '{{ ansible_distribution }}/{{ item }}'
-        - '{{ ansible_os_family }}/{{ item }}'
-        - 'shared/{{ item }}'
-        - '{{ item }}'
-      errors: 'ignore'
+- name: "include tasks"
+  include_tasks: "include-file.yml"
   loop_control:
-    loop_var: include_file_path
-  with_items: "{{ role_include_files }}"
+    loop_var: include_file_name 
+  loop: "{{ role_include_files }}"
 
 ...

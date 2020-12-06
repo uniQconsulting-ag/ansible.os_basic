@@ -22,4 +22,4 @@
     name: snmpd
     state: restarted
 
----
+...
