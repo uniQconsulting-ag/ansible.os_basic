@@ -5,6 +5,7 @@
       name: '*'
       state: latest
       security: yes
+      
   - name: install all kernel updates with yum
     yum:
       name: 'kernel*'

@@ -1,16 +1,5 @@
 ---
 
-# Role
-role_include_files: # add for example requirements.yml
-- packages.yml
-- epel.yml
-- software_cleanup.yml
-- oom_handler.yml
-- mail.yml
-- rsyslog.yml
-- snmpd.yml
-- selinux.yml
-
 # Packages
 osbasic_base_packages:
 - "strace"
