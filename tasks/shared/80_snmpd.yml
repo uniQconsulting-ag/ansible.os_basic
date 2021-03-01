@@ -15,6 +15,16 @@
       src: snmpd.conf.j2
       dest: /etc/snmp/snmpd.conf
     notify: restart snmpd
+      
+  - name: uniqconsulting.firewall
+    include_role:
+      name: uniqconsulting.firewall
+    vars:
+      firewall_open_ports:
+      - port: 161
+        protocol: udp
+      - port: 162
+        protocol: udp
     
   when: osbasic_snmpd
 ...
