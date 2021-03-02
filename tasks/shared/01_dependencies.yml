@@ -6,5 +6,7 @@
 # Change needed roles here
 - name: download dependencies from galaxy
   shell: ansible-galaxy install uniqconsulting.firewall
+  args:
+    creates: "{{ role_path }}/../uniqconsulting.firewall"
 
 ...
