@@ -33,7 +33,7 @@ osbasic_base_packages_centos8:
 - "python3-netaddr"
 
 osbasic_epel_package:
-- epel-release
+- "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
 
 osbasic_mail_packages:
 - postfix
