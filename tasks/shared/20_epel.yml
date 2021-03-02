@@ -1,4 +1,9 @@
 ---
+- name: import rpm key
+  rpm_key:
+    state: present
+    key: "{{ osbasic_epel_key }}"
+
 - name: install epel repo packages
   yum:
     name: "{{ osbasic_epel_package }}"

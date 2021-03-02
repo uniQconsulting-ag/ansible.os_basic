@@ -32,6 +32,7 @@ osbasic_base_packages_centos8:
 - "nm-connection-editor"
 - "python3-netaddr"
 
+osbasic_epel_key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 osbasic_epel_package:
 - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
 
